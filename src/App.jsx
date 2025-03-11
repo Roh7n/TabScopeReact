@@ -6,11 +6,25 @@ import { useState } from "react";
 import { EXAMPLES } from "./data";
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState("components");
+  const [selectedTab, setSelectedTab] = useState();
 
   function handleClick(selectedButton) {
     setSelectedTab(selectedButton);
     console.log(selectedTab);
+  }
+
+  let tabContent = "Please select a topic";
+
+  if (selectedTab) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTab].title}</h3>
+        <p>{EXAMPLES[selectedTab].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTab].code}</code>
+        </pre>
+      </div>
+    );
   }
 
   return (
@@ -62,13 +76,7 @@ function App() {
               State
             </TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTab].title}</h3>
-            <p>{EXAMPLES[selectedTab].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTab].code}</code>
-            </pre>
-          </div>
+          {tabContent}
         </section>
       </main>
     </div>
