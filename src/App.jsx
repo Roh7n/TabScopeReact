@@ -34,20 +34,16 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcepts
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image}
-            />
-            <CoreConcepts {...CORE_CONCEPTS[1]} />
-            <CoreConcepts {...CORE_CONCEPTS[2]} />
-            <CoreConcepts {...CORE_CONCEPTS[3]} />
+            {CORE_CONCEPTS.map((concepts) => (
+              <CoreConcepts key={concepts.title} {...concepts} />
+            ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
             <TabButton
+              isSelected={selectedTab === "components"}
               onSelect={() => {
                 handleClick("components");
               }}
@@ -55,6 +51,7 @@ function App() {
               Components
             </TabButton>
             <TabButton
+              isSelected={selectedTab === "jsx"}
               onSelect={() => {
                 handleClick("jsx");
               }}
@@ -62,6 +59,7 @@ function App() {
               JSX
             </TabButton>
             <TabButton
+              isSelected={selectedTab === "props"}
               onSelect={() => {
                 handleClick("props");
               }}
@@ -69,6 +67,7 @@ function App() {
               Props
             </TabButton>
             <TabButton
+              isSelected={selectedTab === "state"}
               onSelect={() => {
                 handleClick("state");
               }}
